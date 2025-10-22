@@ -1,0 +1,139 @@
+  rg
+  Ripgrep, a recursive line-oriented search tool.  Aims to be a faster alternative to `grep`.  More information: https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md.
+  - Recursively search current directory for a pattern ([3mregex[23m):    rg pattern
+  - Recursively search for a pattern in a file or directory:    rg pattern path/to/file_or_directory
+  - Include hidden files and entries listed in [3m.gitignore[23m:    rg --hidden --no-ignore pattern
+  - Only search the files whose names match the glob pattern(s) (e.g. [3mREADME.*[23m):    rg pattern --glob filename_glob_pattern
+  - Recursively list filenames in the current directory that match a pattern:    rg --files | rg pattern
+  - Only list matched files (useful when piping to other commands):    rg --files-with-matches pattern
+  - Show lines that do not match the pattern:    rg --invert-match pattern
+  - Search for a literal string pattern:    rg --fixed-strings -- string
+
+`rgr` documentation is not available.
+If you want to contribute it, feel free to send a pull request to: https://github.com/tldr-pages/tldr
+  rga
+  Ripgrep wrapper with rich file type searching capabilities.  More information: https://github.com/phiresky/ripgrep-all.
+  - Search recursively for a pattern in all files in the current directory:    rga regex
+  - List available adapters:    rga --rga-list-adapters
+  - Change which adapters to use (e.g. [3mffmpeg[23m, [3mpandoc[23m, [3mpoppler[23m etc.):    rga --rga-adapters=adapter1,adapter2 regex
+  - Search for a pattern using the mime type instead of the file extension (slower):    rga --rga-accurate regex
+  - Display help:    rga --help
+
+  fd
+  An alternative to `find`.  Aims to be faster and easier to use than `find`.  More information: https://github.com/sharkdp/fd#how-to-use.
+  - Recursively find files matching a specific pattern in the current directory:    fd "string|regex"
+  - Find files that begin with a specific string:    fd "^string"
+  - Find files with a specific extension:    fd --extension txt
+  - Find files in a specific directory:    fd "string|regex" path/to/directory
+  - Include ignored and hidden files in the search:    fd --hidden --no-ignore "string|regex"
+  - Execute a command on each search result returned:    fd "string|regex" --exec command
+
+  bat
+  Print and concatenate files.  A `cat` clone with syntax highlighting and Git integration.  More information: https://github.com/sharkdp/bat.
+  - Pretty print the contents of one or more files to [3mstdout[23m:    bat path/to/file1 path/to/file2 ...
+  - Concatenate several files into the target file:    bat path/to/file1 path/to/file2 ... > path/to/target_file
+  - Remove decorations and disable paging ([3m--style plain[23m can be replaced with [3m-p[23m, or both options with [3m-pp[23m):    bat --style plain --pager never path/to/file
+  - Highlight a specific line or a range of lines with a different background color:    bat --highlight-line 10|5:10|:10|10:|10:+5 path/to/file
+  - Show non-printable characters like space, tab or newline:    bat --show-all path/to/file
+  - Remove all decorations except line numbers in the output:    bat --number path/to/file
+  - Syntax highlight a JSON file by explicitly setting the language:    bat --language json path/to/file.json
+  - Display all supported languages:    bat --list-languages
+
+  zoxide
+  Keep track of the most frequently used directories.  Uses a ranking algorithm to navigate to the best match.  More information: https://github.com/ajeetdsouza/zoxide.
+  - Go to the highest-ranked directory that contains "foo" in the name:    zoxide query foo
+  - Go to the highest-ranked directory that contains "foo" and then "bar":    zoxide query foo bar
+  - Start an interactive directory search (requires [3mfzf[23m):    zoxide query --interactive
+  - Add a directory or increment its rank:    zoxide add path/to/directory
+  - Remove a directory from [3mzoxide[23m's database:    zoxide remove path/to/directory
+  - Generate shell configuration for command aliases ([3mz[23m, [3mzi[23m):    zoxide init bash|elvish|fish|nushell|posix|powershell|tcsh|xonsh|zsh
+
+  fzf
+  Fuzzy finder.  Similar to `sk`.  More information: https://github.com/junegunn/fzf#usage.
+  - Start [3mfzf[23m on all files in the specified directory:    find path/to/directory -type f | fzf
+  - Start [3mfzf[23m for running processes:    ps aux | fzf
+  - Select multiple files with [3m<Shift Tab>[23m and write to a file:    find path/to/directory -type f | fzf --multi > path/to/file
+  - Start [3mfzf[23m with a specified query:    fzf --query "query"
+  - Start [3mfzf[23m on entries that start with [3mcore[23m and end with either [3mgo[23m, [3mrb[23m, or [3mpy[23m:    fzf --query "^core go$ | rb$ | py$"
+  - Start [3mfzf[23m on entries that do not match [3mpyc[23m and contain [3mtravis[23m:    fzf --query '!pyc travis'
+
+  nvim
+  Neovim, a programmer's text editor based on Vim, provides several modes for different kinds of text manipulation.  Pressing `i` in normal mode enters insert mode. `Esc` or `Ctrl c` goes back to normal mode, which doesn't allow regular text insertion.  See also: `vim`, `vimtutor`, `vimdiff`.  More information: https://neovim.io.
+  - Open a file:    nvim path/to/file
+  - Enter text editing mode (insert mode):    <Esc><i>
+  - Copy ("yank") or cut ("delete") the current line (paste it with [3m<p>[23m):    <Esc><y><y>|<d><d>
+  - Enter normal mode and undo the last operation:    <Esc><u>
+  - Search for a pattern in the file (press [3m<n>[23m/[3m<N>[23m to go to next/previous match):    <Esc></>search_pattern<Enter>
+  - Perform a [3mregex[23m substitution in the whole file:    <Esc><:>%s/regex/replacement/g<Enter>
+  - Enter normal mode and save (write) the file, and quit:    <Esc><Z><Z>|<Esc><:>x<Enter>|<Esc><:>wq<Enter>
+  - Quit without saving:    <Esc><:>q!<Enter>
+
+  lazygit
+  A simple terminal UI for Git commands, providing an intuitive interface for managing repositories.  More information: https://github.com/jesseduffield/lazygit.
+  - Open Lazygit in the current repository:    lazygit
+  - Open Lazygit for a specific Git repository:    lazygit --path path/to/repository
+  - Start Lazygit with focus on a specific panel:    lazygit status|branch|log|stash|...
+  - Print the default Lazygit configuration:    lazygit --config
+  - Tail the Lazygit logs (useful with debug mode in another terminal):    lazygit --logs
+  - Run Lazygit in debug mode:    lazygit --debug
+  - Print the configuration directory:    lazygit --print-config-dir
+
+tmux
+  Terminal multiplexer.  It allows multiple sessions with windows, panes, and more.  See also: `zellij`, `screen`.  More information: https://github.com/tmux/tmux.
+  - Start a new session:    tmux
+  - Start a new named [s]ession:    tmux new-session -s name
+  - List existing sessions:    tmux list-sessions
+  - Attach to the most recently used session:    tmux attach
+  - Detach from the current session (inside a tmux session):    <Ctrl b><d>
+  - Create a new window (inside a tmux session):    <Ctrl b><c>
+  - Switch between sessions and windows (inside a tmux session):    <Ctrl b><w>
+  - Kill a session by [t]arget name:    tmux kill-session -t name
+
+  zellij
+  Terminal multiplexer with batteries included.  See also: `tmux`, `screen`.  More information: https://zellij.dev/documentation/.
+  - Start a new named session:    zellij --session name
+  - List existing sessions:    zellij list-sessions
+  - Attach to the most recently used session:    zellij attach
+  - Open a new pane (inside a zellij session):    <Alt n>
+  - Detach from the current session (inside a zellij session):    <Ctrl o><d>
+
+  jq
+  A JSON processor that uses a domain-specific language (DSL).  More information: https://jqlang.github.io/jq/manual/.
+  - Execute a specific expression only using the [3mjq[23m binary (print a colored and formatted JSON output):    jq '.' path/to/file.json
+  - Execute a specific script:    cat path/to/file.json | jq --from-file path/to/script.jq
+  - Pass specific arguments:    cat path/to/file.json | jq --arg "name1" "value1" --arg "name2" "value2" ... '. + $ARGS.named'
+  - Create new JSON object via old JSON objects from multiple files:    cat path/to/multiple_json_file_*.json | jq '{newKey1: .key1, newKey2: .key2.nestedKey, ...}'
+  - Print specific array items:    cat path/to/file.json | jq '.[index1], .[index2], ...'
+  - Print all array/object values:    cat path/to/file.json | jq '.[]'
+  - Print objects with 2-condition filter in array:    cat path/to/file.json | jq '.[] | select((.key1=="value1") and .key2=="value2")'
+  - Add/remove specific keys:    cat path/to/file.json | jq '. +|- {"key1": "value1", "key2": "value2", ...}'
+
+  yq
+  A lightweight and portable YAML processor.  More information: https://mikefarah.gitbook.io/yq/.
+  - Output a YAML file, in pretty-print format (v4+):    yq eval path/to/file.yaml
+  - Output a YAML file, in pretty-print format (v3):    yq read path/to/file.yaml --colors
+  - Output the first element in a YAML file that contains only an array (v4+):    yq eval '.[0]' path/to/file.yaml
+  - Output the first element in a YAML file that contains only an array (v3):    yq read path/to/file.yaml '[0]'
+  - Set (or overwrite) a key to a value in a file (v4+):    yq eval '.key = "value"' --inplace path/to/file.yaml
+  - Set (or overwrite) a key to a value in a file (v3):    yq write --inplace path/to/file.yaml 'key' 'value'
+  - Merge two files and print to [3mstdout[23m (v4+):    yq eval-all 'select(filename == "path/to/file1.yaml") * select(filename == "path/to/file2.yaml")' path/to/file1.yaml path/to/file2.yaml
+  - Merge two files and print to [3mstdout[23m (v3):    yq merge path/to/file1.yaml path/to/file2.yaml --colors
+
+  fish
+  The Friendly Interactive SHell, a command-line interpreter designed to be user friendly.  More information: https://fishshell.com/docs/current/cmds/fish.html.
+  - Start an interactive shell session:    fish
+  - Start an interactive shell session without loading startup configs:    fish --no-config
+  - Execute specific commands:    fish --command "echo 'fish is executed'"
+  - Execute a specific script:    fish path/to/script.fish
+  - Check a specific script for syntax errors:    fish --no-execute path/to/script.fish
+  - Execute specific commands from [3mstdin[23m:    echo "echo 'fish is executed'" | fish
+  - Start an interactive shell session in private mode, where the shell does not access old history or save new history:    fish --private
+  - Define and export an environmental variable that persists across shell restarts (builtin):    set --universal --export variable_name variable_value
+
+  zsh
+  Z SHell, a Bash-compatible command-line interpreter.  See also: `bash`, `histexpand`.  More information: https://zsh.sourceforge.io/Doc/Release/Invocation.html#Invocation.
+  - Start an interactive shell session:    zsh
+  - Execute specific [c]ommands:    zsh -c "echo Hello world"
+  - Execute a specific script:    zsh path/to/script.zsh
+
+  - Check a specific script for syntax errors without executing it:    zsh --no-exec path/to/script.zsh
